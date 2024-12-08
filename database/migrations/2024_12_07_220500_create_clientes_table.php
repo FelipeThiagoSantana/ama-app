@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('nome');
+            $table->string('email');
+            $table->string('telefone');
+            $table->string('dataNascimento');
             $table->timestamps();
         });
     }
