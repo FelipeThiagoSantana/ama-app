@@ -17,17 +17,22 @@
                     </x-nav-link>
                 </div>
                 <!--Pacientes-->
+                @can('level')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('paciente.index')" :active="request()->routeIs('paciente.create')">
                         {{ __('Pacientes') }}
                     </x-nav-link>
                 </div>
+                @endcan
+
+                @can('level')
                 <!--Admin Session-->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         {{ __('Lista de Usuários') }}
                     </x-nav-link>
                 </div>
+                @endcan    
             </div>
 
             <!-- Settings Dropdown -->
