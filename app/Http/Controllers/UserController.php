@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:level')->only('edit');
+    }
     public function index()
     {
         return view('users.index',[
@@ -24,6 +29,7 @@ class UserController extends Controller
 
     public function update(Request $id)
     {
-        return 'update';
+        User::FindOrFail($id->id)->update($id->all());
+        return redirect()-> route('user.index');
     }
 }
