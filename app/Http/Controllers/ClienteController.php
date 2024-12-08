@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:level')->only('index');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
     return view ('clientes.index',[
-        'clientes' => Cliente::orderby('nome')->paginate(10)
+        'clientes' => Cliente::orderBy('nome')->paginate('5')
         ]);
     }
 

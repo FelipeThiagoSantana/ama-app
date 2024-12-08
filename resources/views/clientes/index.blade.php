@@ -31,19 +31,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($clientes as $cliente) @endforeach
+                            @foreach($clientes as $cliente)
                             <tr class="hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
                                 <td class="p-2">{{$cliente->nome}}</td>
                                 <td class="p-2">{{$cliente->email}}</td>
                                 <td class="p-2">{{$cliente->telefone}}</td>
                                 <td>Editar</td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <p class="gray-500 rounded p-2 mb-4">
-                        {{$cliente->link}}
-                    </p>
+                    <div class="mt-4 mx-4 text-gray-800 dark:text-gray-200 leading-tight rounded-lg">
+                        {{$clientes->links()}}
+                    </div>
                 </div>
             </div>
         </div>
