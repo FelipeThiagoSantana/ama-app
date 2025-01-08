@@ -36,7 +36,7 @@
                                 <td class="p-2">{{$cliente->nome}}</td>
                                 <td class="p-2">{{$cliente->email}}</td>
                                 <td class="p-2">{{$cliente->telefone}}</td>
-                                <td>Editar</td>
+                                <td><a href="{{route('paciente.show', $cliente->id)}}">Detalhes</a></td>
                             </tr>
                             @endforeach
                             </tbody>

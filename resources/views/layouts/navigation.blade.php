@@ -24,6 +24,11 @@
                     </x-nav-link>
                 </div>
                 @endcan
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('meus.pacientes', Auth::user()->id)" :active="request()->routeIs('paciente.create')">
+                        {{ __('Meus Pacientes') }}
+                    </x-nav-link>
+                </div>
 
                 @can('level')
                 <!--Admin Session-->
@@ -32,7 +37,7 @@
                         {{ __('Lista de Usuários') }}
                     </x-nav-link>
                 </div>
-                @endcan    
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->

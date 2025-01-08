@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -11,6 +12,18 @@ class ClienteController extends Controller
     {
         $this->middleware('can:level')->only('index');
     }
+
+    public function meus_clientes(User $id)
+    {
+        $user = User::where('id', $id->id)->first();
+        $clientes = $user->customers()->get();
+
+        return view ('clientes.meus_clientes',[
+           'clientes' => $clientes
+        ]);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -40,6 +53,8 @@ class ClienteController extends Controller
         $cliente->nome      = $request->nome;
         $cliente->email     = $request->email;
         $cliente->telefone  = $request->telefone;
+        $cliente->cpf       = $request->cpf;
+        $cliente->status    = $request-> status;
         $cliente->dataNascimento = $request->dataNascimento;
 
         $cliente->save();
@@ -51,7 +66,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.show',['cliente => $cliente']);
     }
 
     /**
