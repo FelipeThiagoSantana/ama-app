@@ -13,10 +13,12 @@ class Cliente extends Model
         'user_id',
         'nome',
         'email',
+        'sexo',
+        'cpf',
         'telefone',
         'status',
-        'cpf',
         'dataNascimento',
+        'created_at'
     ];
 
     public function user()

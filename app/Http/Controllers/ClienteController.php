@@ -51,8 +51,9 @@ class ClienteController extends Controller
             'user_id' => 'required|integer',
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'telefone' => 'required|string|max:15',
+            'sexo'=> 'required|string|max:10',
             'cpf' => 'nullable|string',
+            'telefone' => 'required|string|max:15',
             'dataNascimento' => 'required|date',
         ]);
 
