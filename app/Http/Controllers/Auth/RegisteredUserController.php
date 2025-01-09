@@ -14,7 +14,13 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
+
 {
+    public function __construct()
+    {
+        $this->middleware('can:level')->only('create');
+    }
+
     /**
      * Display the registration view.
      */

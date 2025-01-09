@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('nome');
             $table->string('email');
+            $table->string('cpf');
             $table->string('telefone');
+            $table->boolean('status')->default(true);
             $table->string('dataNascimento');
             $table->timestamps();
         });

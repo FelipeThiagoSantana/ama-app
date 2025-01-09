@@ -16,7 +16,7 @@
                         </p>
 
                     @endif
-                    <form action="{{ route('paciente.store') }}" method="post">
+                    <form action="{{ route('cliente.store') }}" method="post">
                         @csrf
                         <fieldset class="border-2 rounded p-6">
                             <legend> Cadastrar Paciente</legend>
@@ -27,7 +27,7 @@
                             <div class="mt-4">
                                 <div
                                     class=" p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
-                                    <label for="name">Nome</label>
+                                    <label for="name">Nome Completo</label>
                                     <input type="text" name="nome" id="name"
                                            class="w-full rounded bg-white dark:bg-gray-800 overflow-hidden shadow-sm"
                                            required autofocus>
@@ -38,6 +38,12 @@
                                 <label for="email">Email</label>
                                 <input type="email" name="email" id="email"
                                        class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                            </div>
+
+                            <div class=" p-4 rounded overflow-hidden">
+                                <label for="email">CPF</label>
+                                <input type="number" name="cpf" id="cpf"
+                                       class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" >
                             </div>
 
                             <div class=" p-4 rounded overflow-hidden">

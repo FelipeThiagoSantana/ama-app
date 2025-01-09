@@ -34,10 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-edit/{id}', [UserController::class, 'edit']) -> name('user.edit');
     Route::put('/edit-update/{id}', [UserController::class, 'update'])->name('user.update');
 
-    //Clientes
+
     Route::resources([
-        'paciente' => ClienteController::class
+        'cliente' => ClienteController::class
     ]);
+
+    Route::get('/meus-clientes/{id}',[ClienteController::class,'meus_clientes'])->name('meus.clientes');
+
 });
 
 require __DIR__.'/auth.php';

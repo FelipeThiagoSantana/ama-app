@@ -12,14 +12,11 @@
                     <p class="mb-4">Olá <strong>{{Auth::user()->name }}</strong></p>
 
 
-                    <div class="flex items-center justify-between">
-                        <a href="{{route('paciente.create')}}" class="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm">
-                            <svg width="20" height="20" fill="currentColor" class="mr-2" aria-hidden="true">
-                                <path d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
-                            </svg>
-                            Cadastrar Paciente
+                    <x-blue-button>
+                        <a href="cliente/create">
+                            {{ __('Cadastrar Paciente') }}
                         </a>
-                    </div>
+                    </x-blue-button>
                     <div class="p-6 text-gray-900">
                         <table class="table-auto w-full">
                             <thead class="text-gray-100 sm:text-left">
@@ -36,7 +33,7 @@
                                 <td class="p-2">{{$cliente->nome}}</td>
                                 <td class="p-2">{{$cliente->email}}</td>
                                 <td class="p-2">{{$cliente->telefone}}</td>
-                                <td>Editar</td>
+                                <td><a href="{{route('cliente.show', $cliente->id)}}">Detalhes</a></td>
                             </tr>
                             @endforeach
                             </tbody>

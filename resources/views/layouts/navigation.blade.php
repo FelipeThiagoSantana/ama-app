@@ -17,13 +17,17 @@
                     </x-nav-link>
                 </div>
                 <!--Pacientes-->
-                @can('level')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('paciente.index')" :active="request()->routeIs('paciente.create')">
+           {{--     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cliente.index')" :active="request()->routeIs('cliente.create')">
                         {{ __('Pacientes') }}
                     </x-nav-link>
+                </div>--}}
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('meus.clientes', Auth::user()->id)" :active="request()->routeIs('cliente.create')">
+                        {{ __('Meus Pacientes') }}
+                    </x-nav-link>
                 </div>
-                @endcan
 
                 @can('level')
                 <!--Admin Session-->
@@ -32,7 +36,7 @@
                         {{ __('Lista de Usuários') }}
                     </x-nav-link>
                 </div>
-                @endcan    
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->
