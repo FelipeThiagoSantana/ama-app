@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('cpf');
             $table->string('telefone');
-            $table->boolean('Status')->default(true);
+            $table->boolean('status')->default(true);
             $table->string('dataNascimento');
             $table->timestamps();
         });

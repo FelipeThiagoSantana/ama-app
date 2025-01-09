@@ -12,7 +12,11 @@
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <p class="mb-4">Olá <strong>{{Auth::user()->name}}</strong></p>
+                                <x-blue-button>
+                                    <a href="/cliente/create">
+                                        {{ __('Cadastrar Paciente') }}
+                                    </a>
+                                </x-blue-button>
                             </div>
                             <table class="table-auto w-full">
                                 <thead class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">
@@ -31,7 +35,7 @@
                                         <td class="text-center p-2">{{$cliente->telefone}}</td>
                                         <td class="text-center p-2">{{$cliente->email}}</td>
                                         <td class="text-center p-2">{{$cliente->created_at}}</td>
-                                        <td class="text-center p-2"><a href="{{ route('paciente.show', $cliente->id) }}">Editar</a></td>
+                                        <td class="text-center p-2"><a href="{{ route('cliente.show', $cliente->id) }}">Exibir</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -16,7 +16,7 @@
                         </p>
 
                     @endif
-                    <form action="{{ route('paciente.store') }}" method="post">
+                    <form action="{{ route('cliente.store') }}" method="post">
                         @csrf
                         <fieldset class="border-2 rounded p-6">
                             <legend> Cadastrar Paciente</legend>
@@ -43,7 +43,7 @@
                             <div class=" p-4 rounded overflow-hidden">
                                 <label for="email">CPF</label>
                                 <input type="number" name="cpf" id="cpf"
-                                       class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                                       class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" >
                             </div>
 
                             <div class=" p-4 rounded overflow-hidden">

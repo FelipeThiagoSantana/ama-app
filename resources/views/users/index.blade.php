@@ -10,12 +10,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <p class="mb-4">Olá <strong>{{Auth::user()->name}}</strong></p>
+
+                    <x-blue-button>
+                        <a href="register">
+                            {{ __('Cadastrar Usuário') }}
+                        </a>
+                    </x-blue-button>
                 </div>
-                <x-blue-button>
-                    <a href="register">
-                        {{ __('Cadastrar Usuário') }}
-                    </a>
-                </x-blue-button>
+
                 <table class="table-auto w-full">
                     <thead class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">
                     <tr>

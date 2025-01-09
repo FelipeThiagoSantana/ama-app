@@ -17,15 +17,14 @@
                     </x-nav-link>
                 </div>
                 <!--Pacientes-->
-                @can('level')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('paciente.index')" :active="request()->routeIs('paciente.create')">
+           {{--     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cliente.index')" :active="request()->routeIs('cliente.create')">
                         {{ __('Pacientes') }}
                     </x-nav-link>
-                </div>
-                @endcan
+                </div>--}}
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('meus.pacientes', Auth::user()->id)" :active="request()->routeIs('paciente.create')">
+                    <x-nav-link :href="route('meus.clientes', Auth::user()->id)" :active="request()->routeIs('cliente.create')">
                         {{ __('Meus Pacientes') }}
                     </x-nav-link>
                 </div>

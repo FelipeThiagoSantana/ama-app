@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    public function __construct()
+  /*  public function __construct()
     {
         $this->middleware('can:level')->only('index');
-    }
+    }*/
 
     public function meus_clientes(User $id)
     {
@@ -47,34 +47,37 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = new Cliente();
+        $validatedData = $request->validate([
+            'user_id' => 'required|integer',
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telefone' => 'required|string|max:15',
+            'cpf' => 'nullable|string',
+            'dataNascimento' => 'required|date',
+        ]);
 
-        $cliente->user_id   = $request->user_id;
-        $cliente->nome      = $request->nome;
-        $cliente->email     = $request->email;
-        $cliente->telefone  = $request->telefone;
-        $cliente->cpf       = $request->cpf;
-        $cliente->status    = $request-> status;
-        $cliente->dataNascimento = $request->dataNascimento;
-
-        $cliente->save();
-        return redirect()->route('paciente.create')->with('msg', 'Paciente cadastrado com sucesso!');
+        Cliente::create($validatedData);
+        return redirect()->route('cliente.create')->with('msg', 'Paciente cadastrado com sucesso!');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(Cliente $cliente)
     {
-        return view('clientes.show',['cliente => $cliente']);
+       /* dd($cliente); // Mostra o conteúdo do cliente recebido*/
+        return view('clientes.show', ['cliente' => $cliente]);
+
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Cliente $cliente)
     {
-        //
+       return view('clientes.edit', ['cliente'=>$cliente]);
     }
 
     /**
@@ -82,7 +85,8 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        Cliente::findOrFail($cliente->id)->update($request->all());
+        return redirect()->route('cliente.show', $cliente->id);
     }
 
     /**
@@ -90,6 +94,7 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+       Cliente::findOrFail($cliente->id)->delete();
+        return redirect()->route('cliente.index')->with('success', 'Cliente excluído com sucesso!');
     }
 }

@@ -34,12 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-edit/{id}', [UserController::class, 'edit']) -> name('user.edit');
     Route::put('/edit-update/{id}', [UserController::class, 'update'])->name('user.update');
 
-    //Paciente
+
     Route::resources([
-        'paciente' => ClienteController::class
+        'cliente' => ClienteController::class
     ]);
-    //Meus Pacientes
-    Route::get('/meus-pacientes{id}',[ClienteController::class,'meus_clientes'])->name('meus.pacientes');
+
+    Route::get('/meus-clientes/{id}',[ClienteController::class,'meus_clientes'])->name('meus.clientes');
 
 });
 
