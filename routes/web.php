@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnamneseAdultoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -35,11 +36,24 @@ Route::middleware('auth')->group(function () {
     Route::put('/edit-update/{id}', [UserController::class, 'update'])->name('user.update');
 
 
+    // Rotas de Recursos
     Route::resources([
-        'cliente' => ClienteController::class
+        'cliente' => ClienteController::class,
+        'anamnese-adulto' => AnamneseAdultoController::class,
     ]);
 
-    Route::get('/meus-clientes/{id}',[ClienteController::class,'meus_clientes'])->name('meus.clientes');
+// Rotas adicionais para casos específicos
+    Route::get('/meus-clientes/{id}', [ClienteController::class, 'meus_clientes'])->name('meus.clientes');
+    Route::get('/anamnese-adulto/create/{cliente}', [AnamneseAdultoController::class, 'create'])->name('anamnese-adulto.create');
+    Route::post('/anamnese-adulto/store/{cliente}', [AnamneseAdultoController::class, 'store'])->name('anamnese-adulto.store');
+    Route::get('/anamnese-adulto/edit/{anamnese}', [AnamneseAdultoController::class, 'edit'])->name('anamnese-adulto.edit');
+    Route::put('/anamnese-adulto/{cliente}/{anamnese}', [AnamneseAdultoController::class, 'update'])->name('anamnese-adulto.update');
+
+
+
+
+
+
 
 });
 

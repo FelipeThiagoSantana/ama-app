@@ -67,10 +67,13 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-       /* dd($cliente); // Mostra o conteúdo do cliente recebido*/
-        return view('clientes.show', ['cliente' => $cliente]);
+        // Busca a anamnese associada ao cliente
+        $anamnese = $cliente->anamnese; // Certifique-se de que o relacionamento está configurado no modelo
 
+        // Passa as variáveis para a view
+        return view('clientes.show', compact('cliente', 'anamnese'));
     }
+
 
 
     /**

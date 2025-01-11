@@ -62,6 +62,7 @@
 
 
 
+
                             <div class="p-4 rounded overflow-hidden">
                                 <label for="status" class="block text-gray-700 dark:text-gray-200">Status</label>
                                 <select name="status" id="status"
@@ -72,10 +73,13 @@
                                     <option value="0" {{ $cliente->status == 0 ? 'selected' : '' }}>Inativo</option>
                                 </select>
                             </div>
-                                <div class=" p-4 rounded overflow-hidden">
-                                    <label for="dataNascimento">Data de Nascimento</label>
-                                    <input type="date" value="{{$cliente->dataNascimento}}" name="dataNascimento" id="dataNascimento"
-                                           class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                            <div class=" p-4 rounded overflow-hidden">
+                                <label for="dataNascimento">Data de Nascimento</label>
+                                <input type="date" value="{{$cliente->dataNascimento}}" name="dataNascimento"
+                                       id="dataNascimento"
+                                       class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                                </input>
+                            </div>
 
                                 <div class="flex items-center justify-between mt-4">
                                     <x-default-button class="bg-green-700 hover:bg-green-500">
@@ -83,7 +87,6 @@
                                         {{ __('Salvar Alterações') }}
                                     </x-default-button>
                             </div>
-                          </div>
                         </fieldset>
                     </form>
                 </div>

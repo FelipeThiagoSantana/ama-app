@@ -14,6 +14,7 @@
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                                 <x-blue-button>
                                     <a href="/cliente/create">
+                                        <i class="fa-solid fa-user-plus m-1"></i>
                                         {{ __('Cadastrar Paciente') }}
                                     </a>
                                 </x-blue-button>
@@ -25,17 +26,17 @@
                                     <th class="p-2">Telefone</th>
                                     <th class="p-2">Email</th>
                                     <th class="p-2">Data de Cadastro</th>
-                                    <th class="p-2">Ações</th>
+                                    <th class="p-2">Prontuário</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($clientes as $cliente)
-                                    <tr class="hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
+                                    <tr class="hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
                                         <td class="text-center p-2">{{$cliente->nome}}</td>
                                         <td class="text-center p-2">{{$cliente->telefone}}</td>
                                         <td class="text-center p-2">{{$cliente->email}}</td>
                                         <td class="text-center p-2">{{$cliente->created_at}}</td>
-                                        <td class="text-center p-2"><a href="{{ route('cliente.show', $cliente->id) }}">Exibir</a></td>
+                                        <td class="text-center p-2"> <a href="{{ route('cliente.show', $cliente->id) }}"><i class="fa-solid fa-clipboard-list fa-lg" style="color: #07922a;"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -44,6 +45,8 @@
                                 {{$cliente->links()}}
                             </div>--}}
                         </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
