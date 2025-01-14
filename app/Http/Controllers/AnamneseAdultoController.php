@@ -41,29 +41,17 @@ class AnamneseAdultoController extends Controller
             return redirect()->back()->withErrors('Cliente não encontrado.');
         }
 
-        // Crie uma nova instância de anamnese
         $anamnese = new anamnese_adulto();
 
-        // Associe o ID do cliente
         $anamnese->cliente_id = $cliente->id;
-
-        // Preencha os campos de anamnese com os dados do cliente
-        $anamnese->nome = $request->input('nome', $cliente->nome); // Use o request ou o valor padrão do cliente
-
+        $anamnese->nome = $request->input('nome', $cliente->nome);
         $anamnese->sexo = $request->input('sexo', $cliente->sexo);
-
         $anamnese->dataNascimento = $request->input('dataNascimento', $cliente->dataNascimento);
-
         $anamnese->escolaridade = $request->input('escolaridade', '');
-
         $anamnese->profissao = $request->input('profissao', '');
-
         $anamnese->religiao = $request->input('religiao', '');
-
         $anamnese->estadoCivil = $request->input('estadoCivil', '');
-
         $anamnese->queixa = $request->input('queixa', '');
-
         $anamnese->conjuge = $request->input('conjuge', '');
         $anamnese->filhos = $request->input('filhos', '');
         $anamnese->constituicaoFamiliar = $request->input('constituicaoFamiliar', '');

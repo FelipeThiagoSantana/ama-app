@@ -13,7 +13,7 @@
                     <hr class="m-5">
                     <strong class="text-gray-900 dark:text-gray-100 m-4">Nome:</strong> {{$cliente->nome}}
                     <br>
-                    <strong class="text-gray-900 dark:text-gray-100 m-4">Sexo:</strong> {{ $cliente->sexo ?? 'Não informado' }}
+                    <strong class="text-gray-900 dark:text-gray-100 m-4">Sexo:</strong> {{ $cliente->sexo ?? '  ' }}
                     <br>
                     <strong class="text-gray-900 dark:text-gray-100 m-4">Email:</strong> {{$cliente->email}}
                     <br>
@@ -75,24 +75,24 @@
                         <legend><h1> PACIENTE </h1></legend>
                         <strong class="text-gray-900 dark:text-gray-100 m-4">Nome:</strong> {{$cliente->nome}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Sexo:</strong> {{ $cliente->sexo ?? 'Não informado' }}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4">Sexo:</strong> {{ $cliente->sexo ?? '  ' }}
                         <br>
                         <strong class="text-gray-900 dark:text-gray-100 m-4">Email:</strong> {{$cliente->email}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">CPF:</strong> {{$cliente->cpf}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4">CPF:</strong> {{$cliente->cpf ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Telefone:</strong> {{$cliente->telefone}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4">Telefone:</strong> {{$cliente-> telefone ?? '  '}}
                         <br>
                         <strong class="text-gray-900 dark:text-gray-100 m-4">Idade:</strong>
                         {{ $cliente->dataNascimento ? \Carbon\Carbon::parse($cliente->dataNascimento)->age : 'Não informada' }}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Escolaridade:</strong> {{$anamnese->escolaridade}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4">Escolaridade:</strong> {{$anamnese->  escolaridade ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Profissão:</strong>  {{$anamnese->profissao}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4">Profissão:</strong>  {{$anamnese-> proficao ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Religião:</strong>  {{$anamnese->religiao}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Religião:</strong>  {{$anamnese->religiao  ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Estado Civil:</strong> {{$anamnese->estadoCivil}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Estado Civil:</strong> {{$anamnese->estadoCivil ?? '  '}}
                         <br>
                     </fieldset>
 
@@ -100,7 +100,7 @@
                         <legend><h1> QUEIXA </h1></legend>
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Queixa: (Há quanto tempo, algum motivo aparente):</strong>
-                            <p>{!! $anamnese->queixa !!} </p>
+                            <p>{!! $anamnese->queixa ?? ' ' !!} </p>
                         </div>
                     </fieldset>
 
@@ -108,22 +108,22 @@
                         <legend><h1> DADOS FAMILIARES </h1></legend>
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong> Cônjuge (nome idade e profissão):</strong>
-                            <p>{!! $anamnese->conjuge !!} </p>
+                            <p>{!! $anamnese->conjuge ?? ' ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Filhos(nome, idade e sexo):</strong>
-                            <p>{!! $anamnese->filhos !!} </p>
+                            <p>{!! $anamnese->filhos  ?? ' '!!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Constituição Familiar(residentes):</strong>
-                            <p>{!! $anamnese->constituicaoFamiliar !!} </p>
+                            <p>{!! $anamnese->constituicaoFamiliar ?? ' ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Relacionamento com familiares:</strong>
-                            <p>{!! $anamnese->relacaoComFamiliares !!} </p>
+                            <p>{!! $anamnese->relacaoComFamiliares ?? ' ' !!} </p>
                         </div>
                     </fieldset>
 
@@ -133,37 +133,37 @@
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>História patológica pregressa (enfermidades e tratamentos atuais e anteriores):
                             </strong>
-                            <p>{!! $anamnese->historiaPatologicaPregressa !!} </p>
+                            <p>{!! $anamnese->historiaPatologicaPregressa ?? '  ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Alimentação:
                             </strong>
-                            <p>{!! $anamnese->alimentacao !!} </p>
+                            <p>{!! $anamnese->alimentacao ?? '  ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Sono:
                             </strong>
-                            <p>{!! $anamnese->sono !!} </p>
+                            <p>{!! $anamnese->sono ?? '  ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>História da Saúde atual (diagnóstico e sintomas):
                             </strong>
-                            <p>{!! $anamnese->historiaSaudeAtual !!} </p>
+                            <p>{!! $anamnese->historiaSaudeAtual ?? '  ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Medicação:
                             </strong>
-                            <p>{!! $anamnese->medicacao !!} </p>
+                            <p>{!! $anamnese->medicacao ?? '  ' !!} </p>
                         </div>
 
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Rotina (durante a semana e aos finais de semana):
                             </strong>
-                            <p>{!! $anamnese->rotina !!} </p>
+                            <p>{!! $anamnese->rotina ?? '  '!!} </p>
                         </div>
 
                     </fieldset>
@@ -174,29 +174,32 @@
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <strong>Dados Extras:
                             </strong>
-                            <p>{!! $anamnese->observacao !!} </p>
+                            <p>{!! $anamnese->observacao ?? '  '!!} </p>
                         </div>
 
                     </fieldset>
 
 
 
-
+                        @if($anamnese)
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <div class="flex items-center justify-between flex-wrap font-light">
                                 <div>
                                     <strong>Criado em:</strong>
-                                    <p>{{$anamnese->created_at->format('d/m/Y')}}</p>
+                                    <p>{{$anamnese->created_at->format('d/m/Y') ?? ' '}}</p>
                                 </div>
                                 <div>
                                     <strong>Última edição:</strong>
-                                    <p>{{$anamnese->updated_at->format('d/m/Y')}}</p>
+                                    <p>{{$anamnese->updated_at->format('d/m/Y') ?? ' '}}</p>
                                 </div>
                             </div>
                         </div>
-
-                    </fieldset>
-
+                        @else
+                        <div class="text-gray-900 dark:text-gray-100 m-4">
+                            <div class="flex items-center justify-between flex-wrap font-light">
+                            </div>
+                        </div>
+                        @endif
                 </div>
             </div>
         </div>

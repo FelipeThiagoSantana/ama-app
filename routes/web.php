@@ -4,6 +4,7 @@ use App\Http\Controllers\AnamneseAdultoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AtendimentoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'cliente' => ClienteController::class,
         'anamnese-adulto' => AnamneseAdultoController::class,
+        'atendimento'=> AtendimentoController::class,
     ]);
 
 // Rotas adicionais para casos específicos
@@ -48,6 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/anamnese-adulto/store/{cliente}', [AnamneseAdultoController::class, 'store'])->name('anamnese-adulto.store');
     Route::get('/anamnese-adulto/edit/{anamnese}', [AnamneseAdultoController::class, 'edit'])->name('anamnese-adulto.edit');
     Route::put('/anamnese-adulto/{cliente}/{anamnese}', [AnamneseAdultoController::class, 'update'])->name('anamnese-adulto.update');
+    //Rota de busca
+    Route::get('/buscar-clientes', [ClienteController::class, 'buscarClientes'])->name('clientes.buscar');
+
+
 
 
 
