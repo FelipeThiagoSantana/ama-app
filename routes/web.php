@@ -53,6 +53,13 @@ Route::middleware('auth')->group(function () {
     //Rota de busca
     Route::get('/buscar-clientes', [ClienteController::class, 'buscarClientes'])->name('clientes.buscar');
 
+    Route::get('/atendimentos/eventos', [AtendimentoController::class, 'getEventos'])->name('atendimentos.eventos');
+    Route::get('/calendario', [AtendimentoController::class, 'showMonthlyCalendar'])->name('calendario.mensal');
+    Route::get('/api/atendimentos', [AtendimentoController::class, 'calendar']);
+
+
+
+
 
 
 

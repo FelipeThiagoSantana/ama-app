@@ -15,14 +15,22 @@ class Atendimento extends Model
 
         return ['agendado', 'em andamento', 'concluído', 'cancelado'];
     }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
     protected $fillable = [
     'cliente_id',
     'user_id',
     'status',
-    'frequencia_atendimento',
     'valor_atendimento',
-    'tipo_atendimento',
     'data_atendimento',
-     'observacao',
+    'hora_inicio',
+    'hora_fim',
+    'tipo_atendimento',
+    'frequencia_atendimento',
+     'observacoes',
     ];
 }

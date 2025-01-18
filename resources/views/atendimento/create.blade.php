@@ -44,11 +44,14 @@
                                                                class="w-full rounded bg-white dark:bg-gray-800 overflow-hidden shadow-sm"
                                                                required autofocus>
                                                         <input type="hidden" id="cliente_id" name="cliente_id">
+                                                        @error('cliente_id')
+                                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
-                                                    <label for="sexo">Status do Atendimento:</label>
-                                                    <select name="sexo" id="sexo"
+                                                    <label for="status">Status do Atendimento:</label>
+                                                    <select name="status" id="status"
                                                             class="w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800" required autofocus>
                                                         <option value="">Selecione</option>
                                                         @foreach($statusOptions as $status)
@@ -74,7 +77,7 @@
                                                             Quizenal
                                                         </option>
                                                         <option
-                                                            value="Mensal">
+                                                            value="mensal">
                                                             Mensal
                                                         </option>
                                                     </select>
@@ -113,11 +116,26 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
-                                                    <label for="data_atendimento">Agendamento:</label>
-                                                    <input type="datetime-local" name="data_atendimento" id="data_atendimento"
-                                                           class="w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800"
-                                                           required>
+                                                <div class=" p-4 rounded overflow-hidden">
+                                                    <label for="data_atendimento">Data de Atendimento</label>
+                                                    <input type="date" name="data_atendimento" id="data_atendimento"
+                                                           class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                                                </div>
+
+                                                <div class="p-4 rounded overflow-hidden block mt-1 w-full">
+                                                    <label for="hora_inicio">Hora Início):</label>
+                                                    <div class="flex gap-4">
+                                                        <input type="time" name="hora_inicio" id="hora_inicio"
+                                                               class="w-1/2 rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800"
+                                                               required>
+                                                    </div>
+
+                                                    <label for="hora_fim">Hora  Fim:</label>
+                                                    <div class="flex gap-4">
+                                                        <input type="time" name="hora_fim" id="hora_fim"
+                                                               class="w-1/2 rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800"
+                                                               required>
+                                                    </div>
                                                 </div>
 
 

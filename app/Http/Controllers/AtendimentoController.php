@@ -12,8 +12,20 @@ class AtendimentoController extends Controller
      */
     public function index()
     {
-        return view('atendimento.index');
+        // Retorna a view para exibição dos atendimentos
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+            ->orderBy('data_atendimento', 'asc')
+            ->with('cliente')
+            ->get();
+
+        return view('atendimento.index', compact('atendimentos'));
     }
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,9 +45,13 @@ class AtendimentoController extends Controller
         // Valida os campos do formulário
         $request->validate([
             'cliente_id' => 'required|exists:clientes,id',
+            'status'=>'required',
+            'valor_atendimento'=>'required|numeric|min:0',
             'data_atendimento' => 'required|date',
-            'valor_atendimento' => 'required|numeric|min:0',
+            'hora_inicio'=> 'required',
+            'hora_fim'=> 'required',
             'tipo_atendimento' => 'nullable|string|max:255',
+            'frequencia_atendimento' => 'nullable|string|max:255',
             'observacao' => 'nullable|string',
         ]);
 
@@ -49,11 +65,13 @@ class AtendimentoController extends Controller
             'cliente_id' => $cliente->id,
             'user_id' => auth()->id(),
             'status' => 'agendado',
-            'frequencia_atendimento' => $request->frequencia_atendimento,
             'valor_atendimento' => $request->valor_atendimento,
-            'tipo_atendimento' => $request->tipo_atendimento,
             'data_atendimento' => $request->data_atendimento,
-            'observacoes' => $request->observacoes,
+            'hora_inicio' => $request->hora_inicio,
+            'hora_fim' => $request->hora_fim,
+            'tipo_atendimento' => $request->tipo_atendimento,
+            'frequencia_atendimento' => $request->frequencia_atendimento,
+            'observacoes' => $request->observacoes
         ]);
 
         // Redireciona com mensagem de sucesso
@@ -64,7 +82,8 @@ class AtendimentoController extends Controller
      */
     public function show(Atendimento $atendimento)
     {
-        //
+      $atendimento = $cliente->atendimento;
+
     }
 
     /**
@@ -91,5 +110,20 @@ class AtendimentoController extends Controller
         //
     }
 
-}
+    public function calendar()
+    {
+        $atendimentos = Atendimento::all()->map(function ($atendimento) {
+            return [
+                'title' => $atendimento->cliente->nome,
+                'start' => $atendimento->data_atendimento . 'T' . $atendimento->hora_inicio,
+                'end' => $atendimento->data_atendimento . 'T' . $atendimento->hora_fim,
+            ];
+        });
+
+        return response()->json($atendimentos);
+    }}
+
+
+
+
 
