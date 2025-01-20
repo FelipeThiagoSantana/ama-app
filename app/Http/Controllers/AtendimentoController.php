@@ -29,7 +29,8 @@ class AtendimentoController extends Controller
     {
         // Recupera as opções de status (se aplicável)
         $statusOptions = Atendimento::getStatusOptions();
-        return view('atendimento.create', compact('statusOptions'));
+        $atendimento = new Atendimento();
+        return view('atendimento.create', compact('statusOptions', 'atendimento'));
     }
 
     /**
@@ -93,18 +94,27 @@ class AtendimentoController extends Controller
      */
     public function edit(Atendimento $atendimento)
     {
-        $atendimentos = Atendimento::where('user_id', auth()->id())
-            ->with('cliente')->get();
+        // Certifique-se de carregar o relacionamento 'cliente' do atendimento
+        $atendimento->load('cliente');
+
+        // Contar o número de atendimentos do cliente específico
         $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+
+        // Retornar a view com as informações necessárias
         return view('atendimento.edit', compact('atendimento', 'nroAtendimento'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Atendimento $atendimento)
     {
-
+        $atendimento ->update($request->all());
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+            ->with('cliente')->get();
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento'));
     }
 
     /**

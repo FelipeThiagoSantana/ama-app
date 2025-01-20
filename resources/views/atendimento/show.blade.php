@@ -24,7 +24,8 @@
                         <br>
                         <p> Frequencia: <strong>{{$atendimento->frequencia_atendimento}}</strong></p>
                         <br>
-                        <p> Observações: <strong>{{$atendimento->observações}}</strong></p>
+
+                        <p> Observações: <strong>{!! $atendimento->observacoes ?? ' ' !!}</strong></p>
                     </div>
                     <hr>
 
@@ -40,8 +41,12 @@
                             </div>
                         </div>
                     </div>
-
-                    <x-default-button class="bg-blue-500 m-4">Editar</x-default-button>
+                    <a href="{{route('atendimento.edit', $atendimento->id)}}">
+                        <x-default-button class="bg-orange-500 hover:bg-orange-400">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            {{ __('Editar') }}
+                        </x-default-button>
+                    </a>
                 </div>
             </div>
         </div>

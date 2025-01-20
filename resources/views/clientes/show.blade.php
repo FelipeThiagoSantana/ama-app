@@ -31,12 +31,12 @@
                     <strong class="text-gray-900 dark:text-gray-100 m-4">Data de Nascimento:</strong>
                     {{ \Carbon\Carbon::parse($cliente->dataNascimento)->format('d/m/Y') }}
                     <div class="mt-4">
+                        <a href="{{route('cliente.edit', $cliente->id)}}">
                         <x-default-button class="bg-orange-500 hover:bg-orange-400">
-                            <a href="{{route('cliente.edit', $cliente->id)}}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 {{ __('Editar') }}
-                            </a>
                         </x-default-button>
+                        </a>
                     </div>
                 </div>
             </div>
