@@ -8,4 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 class Atendimento extends Model
 {
     use HasFactory;
+
+    public static function getStatusOptions()
+    {
+
+
+        return ['agendado', 'em andamento', 'concluído', 'cancelado'];
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    protected $fillable = [
+    'cliente_id',
+    'user_id',
+    'status',
+    'valor_atendimento',
+    'data_atendimento',
+    'hora_inicio',
+    'hora_fim',
+    'tipo_atendimento',
+    'frequencia_atendimento',
+     'observacoes',
+    ];
 }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AnamneseAdultoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AtendimentoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +37,36 @@ Route::middleware('auth')->group(function () {
     Route::put('/edit-update/{id}', [UserController::class, 'update'])->name('user.update');
 
 
+    // Rotas de Recursos
     Route::resources([
-        'cliente' => ClienteController::class
+        'cliente' => ClienteController::class,
+        'anamnese-adulto' => AnamneseAdultoController::class,
+        'atendimento'=> AtendimentoController::class,
     ]);
 
-    Route::get('/meus-clientes/{id}',[ClienteController::class,'meus_clientes'])->name('meus.clientes');
+// Rotas adicionais para casos específicos
+    Route::get('/meus-clientes/{id}', [ClienteController::class, 'meus_clientes'])->name('meus.clientes');
+    Route::get('/anamnese-adulto/create/{cliente}', [AnamneseAdultoController::class, 'create'])->name('anamnese-adulto.create');
+    Route::post('/anamnese-adulto/store/{cliente}', [AnamneseAdultoController::class, 'store'])->name('anamnese-adulto.store');
+    Route::get('/anamnese-adulto/edit/{anamnese}', [AnamneseAdultoController::class, 'edit'])->name('anamnese-adulto.edit');
+    Route::put('/anamnese-adulto/{cliente}/{anamnese}', [AnamneseAdultoController::class, 'update'])->name('anamnese-adulto.update');
+    //Rota de busca
+    Route::get('/buscar-clientes', [ClienteController::class, 'buscarClientes'])->name('clientes.buscar');
+
+    Route::get('/atendimentos/eventos', [AtendimentoController::class, 'getEventos'])->name('atendimentos.eventos');
+    Route::get('/calendario', [AtendimentoController::class, 'showMonthlyCalendar'])->name('calendario.mensal');
+    Route::get('/api/atendimentos', [AtendimentoController::class, 'calendar']);
+
+
+
+
+
+
+
+
+
+
+
 
 });
 

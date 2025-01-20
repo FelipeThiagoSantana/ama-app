@@ -13,6 +13,7 @@
 
 
                     <x-blue-button>
+                        <i class="fa-solid fa-user-plus m-1"></i>
                         <a href="cliente/create">
                             {{ __('Cadastrar Paciente') }}
                         </a>

@@ -15,6 +15,10 @@ class ClienteController extends Controller
 
     public function meus_clientes(User $id)
     {
+
+        if (auth()->id() !== $id->id) {
+            abort(403, 'Acesso não autorizado');
+        }
         $user = User::where('id', $id->id)->first();
         $clientes = $user->customers()->get();
 
@@ -51,8 +55,9 @@ class ClienteController extends Controller
             'user_id' => 'required|integer',
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'telefone' => 'required|string|max:15',
+            'sexo'=> 'required|string|max:10',
             'cpf' => 'nullable|string',
+            'telefone' => 'required|string|max:15',
             'dataNascimento' => 'required|date',
         ]);
 
@@ -66,10 +71,13 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-       /* dd($cliente); // Mostra o conteúdo do cliente recebido*/
-        return view('clientes.show', ['cliente' => $cliente]);
+        // Busca a anamnese associada ao cliente
+        $anamnese = $cliente->anamnese; // Certifique-se de que o relacionamento está configurado no modelo
 
+        // Passa as variáveis para a view
+        return view('clientes.show', compact('cliente', 'anamnese'));
     }
+
 
 
     /**
@@ -97,4 +105,16 @@ class ClienteController extends Controller
        Cliente::findOrFail($cliente->id)->delete();
         return redirect()->route('cliente.index')->with('success', 'Cliente excluído com sucesso!');
     }
+
+    //Busca por filtro
+    public function buscarClientes(Request $request)
+    {
+        $query = $request->get('q'); // Parâmetro de busca
+        $clientes = Cliente::where('user_id', auth()->id()) // Apenas clientes do usuário autenticado
+        ->where('nome', 'LIKE', '%' . $query . '%') // Filtro por nome
+        ->get(['id', 'nome']); // Retorne apenas os campos necessários
+
+        return response()->json($clientes); // Retorna os dados em formato JSON
+    }
+
 }

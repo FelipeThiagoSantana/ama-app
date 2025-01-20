@@ -28,6 +28,17 @@
                                 </div>
                             </div>
 
+                            <div class="p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
+                                <label for="sexo">Sexo</label>
+                                <select name="sexo" id="sexo"
+                                        class="w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800" required autofocus>
+                                    <option value="">Selecione</option>
+                                    <option value="Masculino" {{ old('sexo', $cliente->sexo ?? '') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                                    <option value="Feminino" {{ old('sexo', $cliente->sexo ?? '') == 'Feminino' ? 'selected' : '' }}>Feminino</option>
+                                    <option value="Outro" {{ old('sexo', $cliente->sexo ?? '') == 'Outro' ? 'selected' : '' }}>Outro</option>
+                                </select>
+                            </div>
+
                             <div class=" p-4 rounded overflow-hidden">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" id="email"
@@ -51,6 +62,7 @@
 
 
 
+
                             <div class="p-4 rounded overflow-hidden">
                                 <label for="status" class="block text-gray-700 dark:text-gray-200">Status</label>
                                 <select name="status" id="status"
@@ -61,10 +73,13 @@
                                     <option value="0" {{ $cliente->status == 0 ? 'selected' : '' }}>Inativo</option>
                                 </select>
                             </div>
-                                <div class=" p-4 rounded overflow-hidden">
-                                    <label for="dataNascimento">Data de Nascimento</label>
-                                    <input type="date" value="{{$cliente->dataNascimento}}" name="dataNascimento" id="dataNascimento"
-                                           class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                            <div class=" p-4 rounded overflow-hidden">
+                                <label for="dataNascimento">Data de Nascimento</label>
+                                <input type="date" value="{{$cliente->dataNascimento}}" name="dataNascimento"
+                                       id="dataNascimento"
+                                       class="w-full rounded  dark:bg-gray-800 overflow-hidden shadow-sm" required>
+                                </input>
+                            </div>
 
                                 <div class="flex items-center justify-between mt-4">
                                     <x-default-button class="bg-green-700 hover:bg-green-500">
@@ -72,7 +87,6 @@
                                         {{ __('Salvar Alterações') }}
                                     </x-default-button>
                             </div>
-                          </div>
                         </fieldset>
                     </form>
                 </div>
