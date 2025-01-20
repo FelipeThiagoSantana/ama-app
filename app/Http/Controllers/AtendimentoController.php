@@ -77,12 +77,14 @@ class AtendimentoController extends Controller
      */
     public function show(Atendimento $atendimento)
     {
-
+    //Verifica se o usuario está aturenticado e se aquele atendimento o pertence
      if($atendimento->user_id !== auth()->id()){
          abort(403, 'Você Não tem permissão para acessar esse atendimento!');
      }
-
-      return view('atendimento.show', compact('atendimento'));
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+        ->with('cliente')->get();
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento'));
 
     }
 
@@ -91,7 +93,10 @@ class AtendimentoController extends Controller
      */
     public function edit(Atendimento $atendimento)
     {
-        //
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+            ->with('cliente')->get();
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+        return view('atendimento.edit', compact('atendimento', 'nroAtendimento'));
     }
 
     /**
@@ -99,7 +104,7 @@ class AtendimentoController extends Controller
      */
     public function update(Request $request, Atendimento $atendimento)
     {
-        //
+
     }
 
     /**
@@ -110,6 +115,7 @@ class AtendimentoController extends Controller
         //
     }
 
+    //Função para retornar um json para ser consulmida pela api do FullCalendar.
     public function calendar()
     {
         $atendimentos = Atendimento::where('user_id', auth()->id())
