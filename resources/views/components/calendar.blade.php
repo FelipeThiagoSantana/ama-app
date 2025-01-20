@@ -21,12 +21,12 @@
                 day: 'Dia',
                 list: 'Lista'
             },
-            allDayText: 'Horáios',
+            allDayText: 'Horas',
             noEventsText: 'Nenhum evento para exibir',
             eventClick: function(info) {
-                // Opcional: Exibir detalhes do evento ao clicar
-                alert('Evento: ' + info.event.title);
-                // info.event.start e info.event.end contêm as datas/horários
+                var eventId = info.event.id;
+                var showRoute = `/atendimento/${eventId}`
+                window.location.href = showRoute;
             }
         });
 

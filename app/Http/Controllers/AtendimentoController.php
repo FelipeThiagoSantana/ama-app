@@ -22,11 +22,6 @@ class AtendimentoController extends Controller
     }
 
 
-
-
-
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -82,7 +77,12 @@ class AtendimentoController extends Controller
      */
     public function show(Atendimento $atendimento)
     {
-      $atendimento = $cliente->atendimento;
+
+     if($atendimento->user_id !== auth()->id()){
+         abort(403, 'Você Não tem permissão para acessar esse atendimento!');
+     }
+
+      return view('atendimento.show', compact('atendimento'));
 
     }
 
@@ -112,8 +112,11 @@ class AtendimentoController extends Controller
 
     public function calendar()
     {
-        $atendimentos = Atendimento::all()->map(function ($atendimento) {
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+            ->get()
+            ->map(function ($atendimento) {
             return [
+                'id' => $atendimento->id,
                 'title' => $atendimento->cliente->nome,
                 'start' => $atendimento->data_atendimento . 'T' . $atendimento->hora_inicio,
                 'end' => $atendimento->data_atendimento . 'T' . $atendimento->hora_fim,
