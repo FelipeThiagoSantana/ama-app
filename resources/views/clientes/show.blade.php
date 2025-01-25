@@ -202,6 +202,46 @@
                         @endif
                 </div>
             </div>
+
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Evoluções</h2>
+                    <hr class="m-5">
+                    <div class="p-6 text-gray-900">
+                        <table class="table-auto w-full">
+                            <thead class="text-gray-100 sm:text-left">
+                            <tr>
+                                <th class="p-2">Nº Sessão</th>
+                                <th>Data da Sessão</th>
+                                <th>Evolucao</th>
+                                <th>Ver Mais</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($evolucoes as $evolucao)
+                                <tr  class="hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
+                                    <td class="p-2">{{ $evolucao->id }}</td>
+                                    <td class="p-2">{{  $evolucao->created_at->format('d/m/Y') }}</td>
+                                    <td class="p-2">{!! Str::limit($evolucao->evolucao, 50, '...') !!}</td>
+                                    <td class="p-2">
+                                        <a href="{{ route('evolucao.edit', ['cliente' => $cliente->id, 'evolucao' => $evolucao->id]) }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+                                            Ver mais
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="p-2 hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
+                                        Nenhuma evolução cadastrada.
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>
