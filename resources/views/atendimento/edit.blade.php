@@ -17,10 +17,8 @@
                             <input class=" rounded bg-white dark:bg-gray-800 overflow-hidden shadow-sm" type="hidden"
                                    name="user_id" value="{{Auth::user()->id}}">
 
-
                                 <x-atendimento-form  :atendimento="$atendimento">
                                 </x-atendimento-form>
-
 
                         </fieldset>
                     </form>

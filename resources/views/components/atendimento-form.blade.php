@@ -3,18 +3,20 @@
            name="user_id" value="{{Auth::user()->id}}">
 
     <div class="mt-4">
-        <div
-            class=" p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
-            <label for="name">Buscar Paciente:</label>
+        <div class="p-4 rounded overflow-hidden block mt-1 w-full">
+            <label for="cliente">Buscar Paciente:</label>
             <input type="text" name="cliente_nome" id="cliente"
-                   class="w-full rounded bg-white dark:bg-gray-800 overflow-hidden shadow-sm"
-                   required autofocus value="{{$atendimento->cliente->nome}}">
-            <input type="hidden" id="cliente_id" name="cliente_id">
+                   class="w-full rounded bg-white dark:bg-gray-800 shadow-sm"
+                   required autofocus
+                   value="{{ $atendimento->cliente->nome ?? old('cliente_nome') }}">
+            <input type="hidden" id="cliente_id" name="cliente_id"
+                   value="{{ $atendimento->cliente_id ?? old('cliente_id') }}">
             @error('cliente_id')
             <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
     </div>
+
     <div class="p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
         <label for="status">Status do Atendimento:</label>
         <select name="status" id="status"

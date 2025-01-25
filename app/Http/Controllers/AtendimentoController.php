@@ -27,7 +27,6 @@ class AtendimentoController extends Controller
      */
     public function create()
     {
-        // Recupera as opções de status (se aplicável)
         $statusOptions = Atendimento::getStatusOptions();
         $atendimento = new Atendimento();
         return view('atendimento.create', compact('statusOptions', 'atendimento'));
@@ -85,7 +84,10 @@ class AtendimentoController extends Controller
         $atendimentos = Atendimento::where('user_id', auth()->id())
         ->with('cliente')->get();
         $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
-        return view('atendimento.show', compact('atendimento', 'nroAtendimento'));
+        $cliente = $atendimento->cliente;
+        $evolucoes  = $atendimento->evolucoes;
+
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento', 'cliente', 'evolucoes'));
 
     }
 
@@ -94,14 +96,14 @@ class AtendimentoController extends Controller
      */
     public function edit(Atendimento $atendimento)
     {
-        // Certifique-se de carregar o relacionamento 'cliente' do atendimento
         $atendimento->load('cliente');
+        $cliente = $atendimento->cliente;
 
         // Contar o número de atendimentos do cliente específico
         $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
 
         // Retornar a view com as informações necessárias
-        return view('atendimento.edit', compact('atendimento', 'nroAtendimento'));
+        return view('atendimento.edit', compact('atendimento', 'nroAtendimento', 'cliente'));
     }
 
 
@@ -113,8 +115,9 @@ class AtendimentoController extends Controller
         $atendimento ->update($request->all());
         $atendimentos = Atendimento::where('user_id', auth()->id())
             ->with('cliente')->get();
+        $cliente = $atendimento->cliente;
         $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
-        return view('atendimento.show', compact('atendimento', 'nroAtendimento'));
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento', 'cliente'));
     }
 
     /**

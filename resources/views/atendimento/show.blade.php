@@ -54,11 +54,46 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 ">
-                        <div class="flex items-center justify-between">
-                            <strong>Evolução</strong>
-                        </div>
-                        <hr  class="mb-4">
-                        <x-default-button class=" bg-blue-500 mb-4">Criar evolução</x-default-button>
+
+                        @if($evolucoes->isEmpty())
+                            <div class="flex items-center justify-between">
+                                <strong>Evoluir Atendimento:</strong>
+                            </div>
+                            <hr  class="mb-4">
+                            <a href="{{ route('evolucao.create', ['cliente' => $cliente->id, 'atendimento' => $atendimento->id]) }}">
+                                <x-default-button class="bg-blue-500 mb-4">Criar evolução</x-default-button>
+                            </a>
+                            <p class="text-center">Não há evoluções registradas para este atendimento.</p>
+                        @else
+                            @foreach($evolucoes as $evolucao)
+                                <div class="mb-4">
+                                    <p><strong>Evolução do atendimento:</strong>
+                                    <hr  class="mb-4">
+                                    <div class="m-4 text-center">
+                                        {!! $evolucao->evolucao ?? ' ' !!}</p>
+                                    </div>
+                                    <hr>
+                                    <div class="text-gray-900 dark:text-gray-100 m-4">
+                                        <div class="flex items-center justify-between flex-wrap font-light">
+                                            <div>
+                                                <strong>Criado em:</strong>
+                                                <p>{{$evolucao->created_at->format('d/m/Y') ?? ' '}}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Última edição:</strong>
+                                                <p>{{$evolucao->updated_at->format('d/m/Y') ?? ' '}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('evolucao.edit', [$evolucao->id])}}">
+                                    <x-default-button class="bg-orange-500 hover:bg-orange-400">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            Editar  evolução
+                                    </x-default-button>
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

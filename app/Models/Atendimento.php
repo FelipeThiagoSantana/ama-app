@@ -21,6 +21,11 @@ class Atendimento extends Model
         return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
+    public function evolucoes()
+    {
+        return $this->hasMany(Evolucao::class, 'atendimento_id');
+    }
+
     protected $fillable = [
     'cliente_id',
     'user_id',
