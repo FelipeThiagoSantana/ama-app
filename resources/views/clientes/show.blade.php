@@ -212,10 +212,10 @@
                         <table class="table-auto w-full">
                             <thead class="text-gray-100 sm:text-left">
                             <tr>
-                                <th class="p-2">Nº Sessão</th>
+                                <th class="p-2">ID Sessão</th>
                                 <th>Data da Sessão</th>
                                 <th>Evolucao</th>
-                                <th>Ver Mais</th>
+                                <th>Ação</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -225,14 +225,14 @@
                                     <td class="p-2">{{  $evolucao->created_at->format('d/m/Y') }}</td>
                                     <td class="p-2">{!! Str::limit($evolucao->evolucao, 50, '...') !!}</td>
                                     <td class="p-2">
-                                        <a href="{{ route('evolucao.edit', ['cliente' => $cliente->id, 'evolucao' => $evolucao->id]) }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+                                        <a href="{{ route('evolucao.edit', ['cliente' => $cliente->id, 'evolucao' => $evolucao->id]) }}">
                                             Ver mais
                                         </a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="p-2 hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
+                                    <td colspan="4" class="p-2 hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight text-center">
                                         Nenhuma evolução cadastrada.
                                     </td>
                                 </tr>
