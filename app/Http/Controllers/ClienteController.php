@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Atendimento;
 use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Evolucao;
 
 class ClienteController extends Controller
 {
@@ -69,14 +71,18 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente)
+    public function show(Cliente $cliente, Atendimento $atendimento)
     {
         // Busca a anamnese associada ao cliente
         $anamnese = $cliente->anamnese;
 
-        $evolucoes = $cliente->evolucoes;
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
 
-        return view('clientes.show', compact('cliente', 'anamnese','evolucoes' ));
+        $evolucoes = Evolucao::where('cliente_id', $cliente->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('clientes.show', compact('cliente', 'anamnese','evolucoes', 'nroAtendimento'));
     }
 
 
