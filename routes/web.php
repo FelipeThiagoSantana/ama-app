@@ -5,6 +5,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\EvolucaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
         'cliente' => ClienteController::class,
         'anamnese-adulto' => AnamneseAdultoController::class,
         'atendimento'=> AtendimentoController::class,
+        'evolucao'=>EvolucaoController::class
     ]);
 
 // Rotas adicionais para casos específicos
@@ -50,22 +52,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/anamnese-adulto/store/{cliente}', [AnamneseAdultoController::class, 'store'])->name('anamnese-adulto.store');
     Route::get('/anamnese-adulto/edit/{anamnese}', [AnamneseAdultoController::class, 'edit'])->name('anamnese-adulto.edit');
     Route::put('/anamnese-adulto/{cliente}/{anamnese}', [AnamneseAdultoController::class, 'update'])->name('anamnese-adulto.update');
-    //Rota de busca
+                                                     /*  Rota p/ busca de clientes */
     Route::get('/buscar-clientes', [ClienteController::class, 'buscarClientes'])->name('clientes.buscar');
-
+                                                     /* Rotas Atendimento */
     Route::get('/atendimentos/eventos', [AtendimentoController::class, 'getEventos'])->name('atendimentos.eventos');
+                                                 /* rotas p/ CalendarAPI */
     Route::get('/calendario', [AtendimentoController::class, 'showMonthlyCalendar'])->name('calendario.mensal');
     Route::get('/api/atendimentos', [AtendimentoController::class, 'calendar']);
-
-
-
-
-
-
-
-
-
-
+                                                /* Rotas para Evolucoes */
+    Route::get('/evolucao/create/{cliente}/{atendimento}', [EvolucaoController::class, 'create'])->name('evolucao.create');
+    Route::post('/evolucao/store/{cliente}/{atendimento}', [EvolucaoController::class, 'store'])->name('evolucao.store');
+    //Route::get('/evolucao/{evolucao}/edit', [EvolucaoController::class, 'edit'])->name('evolucao.edit');
 
 
 });

@@ -27,9 +27,9 @@ class AtendimentoController extends Controller
      */
     public function create()
     {
-        // Recupera as opções de status (se aplicável)
         $statusOptions = Atendimento::getStatusOptions();
-        return view('atendimento.create', compact('statusOptions'));
+        $atendimento = new Atendimento();
+        return view('atendimento.create', compact('statusOptions', 'atendimento'));
     }
 
     /**
@@ -77,12 +77,17 @@ class AtendimentoController extends Controller
      */
     public function show(Atendimento $atendimento)
     {
-
+    //Verifica se o usuario está aturenticado e se aquele atendimento o pertence
      if($atendimento->user_id !== auth()->id()){
          abort(403, 'Você Não tem permissão para acessar esse atendimento!');
      }
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+        ->with('cliente')->get();
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+        $cliente = $atendimento->cliente;
+        $evolucoes  = $atendimento->evolucoes;
 
-      return view('atendimento.show', compact('atendimento'));
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento', 'cliente', 'evolucoes'));
 
     }
 
@@ -91,15 +96,28 @@ class AtendimentoController extends Controller
      */
     public function edit(Atendimento $atendimento)
     {
-        //
+        $atendimento->load('cliente');
+        $cliente = $atendimento->cliente;
+
+        // Contar o número de atendimentos do cliente específico
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+
+        // Retornar a view com as informações necessárias
+        return view('atendimento.edit', compact('atendimento', 'nroAtendimento', 'cliente'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Atendimento $atendimento)
     {
-        //
+        $atendimento ->update($request->all());
+        $atendimentos = Atendimento::where('user_id', auth()->id())
+            ->with('cliente')->get();
+        $cliente = $atendimento->cliente;
+        $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento', 'cliente'));
     }
 
     /**
@@ -110,6 +128,7 @@ class AtendimentoController extends Controller
         //
     }
 
+    //Função para retornar um json para ser consulmida pela api do FullCalendar.
     public function calendar()
     {
         $atendimentos = Atendimento::where('user_id', auth()->id())

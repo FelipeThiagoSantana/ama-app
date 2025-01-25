@@ -36,6 +36,11 @@ class Cliente extends Model
         return $this->hasOne(anamnese_adulto::class);
     }
 
+    public function evolucoes()
+    {
+        return $this->hasMany(Evolucao::class, 'cliente_id');
+    }
+
 
 
 
