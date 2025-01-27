@@ -209,7 +209,7 @@
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Evoluções</h2>
                     <hr class="m-5">
                     <div class="p-6 text-gray-900">
-                        <table class="table-auto w-full">
+                        <table class="table-auto  w-full">
                             <thead class="text-gray-100 sm:text-left">
                             <tr>
                                 <th class="p-2">ID Sessão</th>

@@ -26,6 +26,22 @@ class Atendimento extends Model
         return $this->hasMany(Evolucao::class, 'atendimento_id');
     }
 
+    protected static function booted()
+    {
+        static::created(function ($atendimento) {
+            Financeiro::create([
+                'atendimento_id' => $atendimento->id,
+                'cliente_id' => $atendimento->cliente_id,
+                'user_id' => $atendimento->user_id,
+                'valor_atendimento' => $atendimento->valor_atendimento,
+                'tipo_atendimento' => $atendimento->tipo_atendimento,
+                'status_pagamento' => 'pendente',
+                'data_pagamento' => null
+            ]);
+        });
+    }
+
+
     protected $fillable = [
     'cliente_id',
     'user_id',
