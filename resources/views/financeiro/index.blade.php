@@ -5,13 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <div class="bg-white m-8 dark:bg-gray-800 shadow-md rounded-lg p-6 flex items-center">
+    <div class="grid flex-wrap grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+        <div class="bg-white m-8 dark:bg-gray-800 shadow-md rounded-lg p-6 flex items-center ">
             <div class="bg-green-500 text-white rounded-full p-4">
-                <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                </svg>
+                <i class=" text-4xl fa-solid fa-cash-register" ></i>
             </div>
             <div class="ml-4">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Atendimentos Recebidos</h2>
@@ -22,9 +19,7 @@
 
         <div class="bg-white m-8 dark:bg-gray-800 shadow-md rounded-lg p-6 flex items-center">
             <div class="bg-red-500 text-white rounded-full p-4">
-                <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17L5 13m0 0l4-4m-4 4h16"></path>
-                </svg>
+                <i class=" text-4xl fa-solid fa-cash-register" ></i>
             </div>
             <div class="ml-4">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Atendimentos Pendentes</h2>
@@ -33,7 +28,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6  max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Card Total Recebido -->
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Total Recebido</h2>
@@ -44,7 +39,7 @@
 
         <!-- Card Total a Receber -->
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Total a Receber</h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Total Pendentes</h2>
             <p class="text-4xl font-bold text-red-500 mt-4">
                 R$ {{ number_format($totalAReceber, 2, ',', '.') }}
             </p>
