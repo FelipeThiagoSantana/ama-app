@@ -39,7 +39,7 @@
 
         <!-- Card Total a Receber -->
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Total Pendentes</h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Total a Receber</h2>
             <p class="text-4xl font-bold text-red-500 mt-4">
                 R$ {{ number_format($totalAReceber, 2, ',', '.') }}
             </p>
