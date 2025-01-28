@@ -116,8 +116,9 @@ class AtendimentoController extends Controller
         $atendimentos = Atendimento::where('user_id', auth()->id())
             ->with('cliente')->get();
         $cliente = $atendimento->cliente;
+        $evolucoes  = $atendimento->evolucoes;
         $nroAtendimento = Atendimento::where('cliente_id', $atendimento->cliente_id)->count();
-        return view('atendimento.show', compact('atendimento', 'nroAtendimento', 'cliente'));
+        return view('atendimento.show', compact('atendimento', 'nroAtendimento', 'cliente', 'evolucoes'));
     }
 
     /**
