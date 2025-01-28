@@ -13,7 +13,7 @@ class Atendimento extends Model
     {
 
 
-        return ['agendado', 'em andamento', 'concluído', 'cancelado'];
+        return ['agendado', 'em andamento', 'concluído', 'cancelado', 'confirmado'];
     }
 
     public function cliente()

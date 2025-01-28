@@ -35,12 +35,8 @@
                 Cancelado
             </option>
             <option
-                value="finalizado"  {{ isset($atendimento) && $atendimento->status == 'finalizado' ? 'selected' : '' }}>
-                Finalizado
-            </option>
-            <option
-                value="reagendado"  {{ isset($atendimento) && $atendimento->status == 'reagendado' ? 'selected' : '' }}>
-                Reagendado
+                value="concluído"  {{ isset($atendimento) && $atendimento->status == 'concluído' ? 'selected' : '' }}>
+                Concluído
             </option>
         </select>
     </div>
