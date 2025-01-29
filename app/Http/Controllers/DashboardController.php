@@ -12,31 +12,51 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // Filtra os atendimentos
+        $totalDeCliente = Cliente::where('user_id', auth()->id())
+        ->where('status', '1')->count();
 
 
-        $totalDeCliente = Cliente::where('status', '1')->count();
-        $totalAgendamento = Atendimento::where('status', 'agendado')->count();
+        $totalAgendamento = Atendimento::where('user_id', auth()->id())->where('status', 'agendado')->count();
 
-        //Atendimento Online
-        $totalAgendamentoOnline = Atendimento::where('status', 'agendado')
+        // Atendimentos Online
+        $totalAgendamentoOnline = Atendimento::where('user_id', auth()->id())
+            ->where('status', 'agendado')
             ->where('tipo_atendimento', 'online')->count();
-        //AtendimentoPresencial
-        $totalAgendamentoPresencial = Atendimento::where('status', 'agendado')
+
+        // Atendimentos presenciais do usuário
+        $totalAgendamentoPresencial = Atendimento::where('user_id', auth()->id())
+            ->where('status', 'agendado')
             ->where('tipo_atendimento', 'presencial')->count();
 
-        $totalAtendimentoConfirmado = Atendimento::where('status', 'confirmado')->count();
+        // Total de atendimentos confirmados
+        $totalAtendimentoConfirmado = Atendimento::where('user_id', auth()->id())
+            ->where('status', 'confirmado')->count();
 
+        // Atendimentos  no último mês
         $inicioDoMesPassado = Carbon::now()->subMonth()->startOfMonth();
         $fimDoMesPassado = Carbon::now()->subMonth()->endOfMonth();
-        $totalAtendimentosUltimoMes = Atendimento::whereBetween('created_at', [$inicioDoMesPassado, $fimDoMesPassado])
+        $totalAtendimentosUltimoMes = Atendimento::where('user_id', auth()->id())
+            ->whereBetween('created_at', [$inicioDoMesPassado, $fimDoMesPassado])
             ->where('status', 'concluído')->count();
 
+        // Atendimentos
         $inicioDoMesAtual = Carbon::now()->startOfMonth();
         $fimDoMesAtual = Carbon::now()->endOfMonth();
-        $totalAtendimentosMesAtual = Atendimento::whereBetween('created_at', [$inicioDoMesAtual, $fimDoMesAtual])
+        $totalAtendimentosMesAtual = Atendimento::where('user_id', auth()->id())
+            ->whereBetween('created_at', [$inicioDoMesAtual, $fimDoMesAtual])
             ->where('status', 'concluído')->count();
 
-
-        return view('dashboard', compact('totalDeCliente', 'totalAgendamento', 'totalAgendamentoOnline', 'totalAgendamentoPresencial', 'totalAtendimentosUltimoMes', 'totalAtendimentosMesAtual', 'totalAtendimentoConfirmado' ));
+        // Passando os dados filtrados para a view
+        return view('dashboard', compact(
+            'totalDeCliente',
+            'totalAgendamento',
+            'totalAgendamentoOnline',
+            'totalAgendamentoPresencial',
+            'totalAtendimentosUltimoMes',
+            'totalAtendimentosMesAtual',
+            'totalAtendimentoConfirmado'
+        ));
     }
+
 }
