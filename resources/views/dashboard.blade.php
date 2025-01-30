@@ -61,12 +61,12 @@
 
 
         <div class="bg-white m-8 dark:bg-gray-800 shadow-md rounded-lg p-6 flex items-center">
-            <div class="bg-blue-500 text-white rounded-full p-4">
+            <div class="bg-green-600 text-white rounded-full p-4">
                 <i class="fa-solid fa-calendar-check fa-xl"></i>
             </div>
             <div class="ml-4">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Atendimentos Confirmados</h2>
-                <p class="text-4xl text-center font-bold text-blue-500 mt-2">{{ $totalAtendimentoConfirmado }}</p>
+                <p class="text-4xl text-center font-bold text-green-600 mt-2">{{ $totalAtendimentoConfirmado }}</p>
             </div>
         </div>
     </div>
