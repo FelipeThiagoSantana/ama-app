@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('atendimentos', function (Blueprint $table) {
             Schema::table('atendimentos', function (Blueprint $table) {
-                $table->date('hora_fim')->nullable()->after('hora_inicio');
+                $table->time('hora_fim')->nullable()->after('hora_inicio');
             });
         });
     }
