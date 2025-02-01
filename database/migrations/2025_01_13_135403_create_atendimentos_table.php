@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('status', ['agendado', 'em andamento', 'concluído', 'cancelado'])->default('agendado');
+            $table->enum('status', ['agendado', 'em andamento', 'concluído', 'cancelado', 'confirmado'])->default('agendado');
             $table->decimal('valor_atendimento', 10, 2)->default(0.00);
             $table->string('tipo_atendimento')->nullable(); // Tipo de atendimento
             $table->text('observacoes')->nullable(); // Observações do atendimento
