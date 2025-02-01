@@ -13,11 +13,11 @@ class FinanceiroController extends Controller
      */
     public function index()
     {
-        $financeiros = Financeiro::with('atendimento', 'cliente')->orderByDesc('created_at')->get();
-        $atendimentosRecebidos = Financeiro::where('status_pagamento', 'pago')->count();
-        $atendimentosPendentes = Financeiro::where('status_pagamento', 'pendente')->count();
-        $totalRecebido = Financeiro::where('status_pagamento', 'pago')->sum('valor_atendimento');
-        $totalAReceber = Financeiro::where('status_pagamento', 'pendente')->sum('valor_atendimento');
+        $financeiros = Financeiro::where('user_id', auth()->id())->with('atendimento', 'cliente')->orderByDesc('created_at')->get();
+        $atendimentosRecebidos = Financeiro::where('user_id', auth()->id())->where('status_pagamento', 'pago')->count();
+        $atendimentosPendentes = Financeiro::where('user_id', auth()->id())->where('status_pagamento', 'pendente')->count();
+        $totalRecebido = Financeiro::where('user_id', auth()->id())->where('status_pagamento', 'pago')->sum('valor_atendimento');
+        $totalAReceber = Financeiro::where('user_id', auth()->id())->where('status_pagamento', 'pendente')->sum('valor_atendimento');
 
 
         return view ('financeiro.index', compact('financeiros', 'atendimentosPendentes', 'atendimentosRecebidos','totalRecebido', 'totalAReceber' ));
