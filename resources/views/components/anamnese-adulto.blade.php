@@ -1,13 +1,28 @@
 <div>
     <div class="mt-4">
 
-
-        <div
-            class=" p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
+        <div class="p-4 rounded overflow-hidden block mt-1 w-full">
             <label for="escolaridade">Escolaridade:</label>
-            <input type="text" name="escolaridade" id="escolaridade"
-                   class="w-full rounded bg-white dark:bg-gray-800 overflow-hidden shadow-sm"
-                   value="{{$anamnese->escolaridade ?? ''}}" autofocus>
+            <select name="escolaridade" id="escolaridade"
+                    class="w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800">
+                <option value="">Selecione</option>
+                @php
+                    $escolaridades = [
+                        'Ensino Fundamental (Incompleto)',
+                        'Ensino Fundamental (Completo)',
+                        'Ensino Médio (Incompleto)',
+                        'Ensino Médio (Completo)',
+                        'Ensino Superior (Incompleto)',
+                        'Ensino Superior (Completo)',
+                    ];
+                    $escolaridadeAtual = old('escolaridade', $anamnese->escolaridade ?? '');
+                @endphp
+                @foreach ($escolaridades as $escolaridade)
+                    <option value="{{ $escolaridade }}" {{ $escolaridadeAtual == $escolaridade ? 'selected' : '' }}>
+                        {{ $escolaridade }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div
@@ -26,13 +41,29 @@
                    value="{{$anamnese->religiao ?? ''}}" autofocus>
         </div>
 
-        <div
-            class=" p-4 rounded overflow-hidden  block mt-1 w-full p-4 rounded overflow-hidden">
+        <div class="p-4 rounded overflow-hidden block mt-1 w-full">
             <label for="estadoCivil">Estado Civil:</label>
-            <input type="text" name="estadoCivil" id="estadoCivil"
-                   class="w-full rounded bg-white dark:bg-gray-800 overflow-hidden shadow-sm"
-                   value="{{$anamnese->estadoCivil ?? ''}}" autofocus>
+            <select name="estadoCivil" id="estadoCivil"
+                    class="w-full rounded border-gray-300 shadow-sm focus:ring focus:ring-indigo-200 dark:bg-gray-800">
+                <option value="">Selecione</option>
+                @php
+                    $estadosCivil = [
+                        'Casado(a)',
+                        'Solteiro(a)',
+                        'Divorciado(a)',
+                        'União Estavel',
+                    ];
+                    $estadoCivilAtual = old('estadoCivil', $anamnese->estadoCivil ?? '');
+                @endphp
+                @foreach ($estadosCivil as $estadoCivil)
+                    <option value="{{ $estadoCivil }}" {{ $estadoCivilAtual == $estadoCivil ? 'selected' : '' }}>
+                        {{ $estadoCivil }}
+                    </option>
+                @endforeach
+            </select>
         </div>
+
+
 
         <div class="p-4 rounded overflow-hidden block mt-1 w-full">
             <label for="Queixas">Queixas:</label>
