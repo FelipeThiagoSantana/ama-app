@@ -32,10 +32,10 @@
                     {{ \Carbon\Carbon::parse($cliente->dataNascimento)->format('d/m/Y') }}
                     <div class="mt-4">
                         <a href="{{route('cliente.edit', $cliente->id)}}">
-                        <x-default-button class="bg-orange-500 hover:bg-orange-400">
+                            <x-default-button class="bg-orange-500 hover:bg-orange-400">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 {{ __('Editar') }}
-                        </x-default-button>
+                            </x-default-button>
                         </a>
                     </div>
                 </div>
@@ -81,18 +81,23 @@
                         <br>
                         <strong class="text-gray-900 dark:text-gray-100 m-4">CPF:</strong> {{$cliente->cpf ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Telefone:</strong> {{$cliente-> telefone ?? '  '}}
+                        <strong
+                            class="text-gray-900 dark:text-gray-100 m-4">Telefone:</strong> {{$cliente-> telefone ?? '  '}}
                         <br>
                         <strong class="text-gray-900 dark:text-gray-100 m-4">Idade:</strong>
                         {{ $cliente->dataNascimento ? \Carbon\Carbon::parse($cliente->dataNascimento)->age : 'Não informada' }}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Escolaridade:</strong> {{$anamnese->  escolaridade ?? '  '}}
+                        <strong
+                            class="text-gray-900 dark:text-gray-100 m-4">Escolaridade:</strong> {{$anamnese->  escolaridade ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4">Profissão:</strong>  {{$anamnese-> proficao ?? '  '}}
+                        <strong
+                            class="text-gray-900 dark:text-gray-100 m-4">Profissão:</strong> {{$anamnese-> proficao ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Religião:</strong>  {{$anamnese->religiao  ?? '  '}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4">
+                            Religião:</strong> {{$anamnese->religiao  ?? '  '}}
                         <br>
-                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Estado Civil:</strong> {{$anamnese->estadoCivil ?? '  '}}
+                        <strong class="text-gray-900 dark:text-gray-100 m-4"> Estado
+                            Civil:</strong> {{$anamnese->estadoCivil ?? '  '}}
                         <br>
                     </fieldset>
 
@@ -180,8 +185,7 @@
                     </fieldset>
 
 
-
-                        @if($anamnese)
+                    @if($anamnese)
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <div class="flex items-center justify-between flex-wrap font-light">
                                 <div>
@@ -192,14 +196,15 @@
                                     <strong>Última edição:</strong>
                                     <p>{{$anamnese->updated_at->format('d/m/Y') ?? ' '}}</p>
                                 </div>
+
                             </div>
                         </div>
-                        @else
+                    @else
                         <div class="text-gray-900 dark:text-gray-100 m-4">
                             <div class="flex items-center justify-between flex-wrap font-light">
                             </div>
                         </div>
-                        @endif
+                    @endif
                 </div>
             </div>
 
@@ -209,36 +214,36 @@
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Evoluções</h2>
                     <hr class="m-5">
                     <div class="p-6 text-gray-900">
-                        <table class="table-auto  w-full">
-                            <thead class="text-gray-100 sm:text-left">
-                            <tr>
-                                <th class="p-2">ID Sessão</th>
-                                <th>Data da Sessão</th>
-                                <th>Evolucao</th>
-                                <th>Ação</th>
-                            </tr>
-                            </thead>
-                            <tbody>
                             @forelse($evolucoes as $evolucao)
-                                <tr  class="hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
-                                    <td class="p-2">{{ $evolucao->id }}</td>
-                                    <td class="p-2">{{  $evolucao->created_at->format('d/m/Y') }}</td>
-                                    <td class="p-2">{!! Str::limit($evolucao->evolucao, 50, '...') !!}</td>
-                                    <td class="p-2">
-                                        <a href="{{ route('evolucao.edit', ['cliente' => $cliente->id, 'evolucao' => $evolucao->id]) }}">
-                                            Ver mais
-                                        </a>
-                                    </td>
-                                </tr>
+                                <fieldset
+                                    class=" m-4 text-gray-800 dark:text-gray-200 border-2 rounded p-6">
+                                    <div class="flex items-center justify-between flex-wrap font-light">
+                                        <div>
+                                            <strong>#ID{{$evolucao->id}}</strong>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <br>
+                                    <p>{!!$evolucao->evolucao!!}</p>
+                                    <br>
+                                    <hr>
+                                    <div class="flex items-center justify-between flex-wrap font-light">
+                                        <div>
+                                            <a href="{{ route('evolucao.edit', ['cliente' => $cliente->id, 'evolucao' => $evolucao->id]) }}">
+                                                <x-default-button class="bg-orange-500 hover:bg-orange-400 mt-4 mb-4">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                    Editar
+                                                </x-default-button>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <strong>Criado em:</strong>
+                                            <p>{{$evolucao->created_at->format('d/m/Y') ?? ' '}}</p>
+                                        </div>
+                                    </div>
+                                </fieldset>
                             @empty
-                                <tr>
-                                    <td colspan="4" class="p-2 hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight text-center">
-                                        Nenhuma evolução cadastrada.
-                                    </td>
-                                </tr>
                             @endforelse
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
