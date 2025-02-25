@@ -57,7 +57,7 @@
                         <tr>
                             <th class="p-2">Id</th>
                             <th class="p-2">Paciente</th>
-                            <th class="p-2">data Consulta</th>
+                            <th class="p-2">Data Consulta</th>
                             <th class="p-2">Status</th>
                             <th class="p-2">Valor</th>
                             <th class="p-2">Tipo Atendimento</th>
