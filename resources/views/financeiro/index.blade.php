@@ -69,7 +69,7 @@
                             <tr class="hover:bg-gray-200 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-200 leading-tight">
                               <td class="text-center p-2">{{ $financeiro->atendimento_id }}</td>
                                 <td class="text-center p-2">{{ $financeiro->cliente->nome }}</td>
-                                <td class="text-center p-2">{{  \Carbon\Carbon::parse($financeiro->data_atendimento)->format('d-m-Y') }}</td>
+                                <td class="text-center p-2">{{  \Carbon\Carbon::parse($financeiro->atendimento->data_atendimento)->format('d-m-Y') }}</td>
                                 <td class="text-center p-2">{{ $financeiro->status_pagamento}}</td>
                                 <td class="text-center p-2">
                                     R$ {{ number_format($financeiro->valor_atendimento, 2, ',', '.') }}</td>
