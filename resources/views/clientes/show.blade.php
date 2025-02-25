@@ -91,7 +91,7 @@
                             class="text-gray-900 dark:text-gray-100 m-4">Escolaridade:</strong> {{$anamnese->  escolaridade ?? '  '}}
                         <br>
                         <strong
-                            class="text-gray-900 dark:text-gray-100 m-4">Profissão:</strong> {{$anamnese-> proficao ?? '  '}}
+                            class="text-gray-900 dark:text-gray-100 m-4">Profissão:</strong> {{$anamnese-> profissao ?? '  '}}
                         <br>
                         <strong class="text-gray-900 dark:text-gray-100 m-4">
                             Religião:</strong> {{$anamnese->religiao  ?? '  '}}
