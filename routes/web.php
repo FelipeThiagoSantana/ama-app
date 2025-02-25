@@ -66,7 +66,8 @@ Route::middleware('auth')->group(function () {
     //Route::get('/evolucao/{evolucao}/edit', [EvolucaoController::class, 'edit'])->name('evolucao.edit');
     //Route::get('/dashboard', [FinanceiroController::class, 'dashboard'])->name('dashboard');
 
-
+    // Rotas para Relatórios em PDF
+    Route::get('/relatorio/atendimentos', [RelatorioController::class, 'gerarRelatorioAtendimentos'])->name('relatorio.atendimentos');
 });
 
 require __DIR__.'/auth.php';
